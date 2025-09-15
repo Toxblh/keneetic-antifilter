@@ -33,6 +33,18 @@ gen-cloudflare:
 	curl https://www.cloudflare.com/ips-v4 -o vendor/cloudflare/ipv-4.txt
 	bin/antifilter vendor/cloudflare/ipv-4.txt  routes/cloudflare-ipv4.bat
 
+# make build gen-discord
+gen-discord:
+	bin/antifilter cidr/discord_cidr4.txt routes/discrod-ipv4.bat
+
+# make build gen-telegram
+gen-telegram:
+	bin/antifilter cidr/telegram_cidr4.txt routes/telegram-ipv4.bat
+
+# make build gen-copilot
+gen-copilot:
+	bin/antifilter cidr/copilot_cidr4.txt routes/copilot-ipv4.bat
+
 # make build gen-all slice-routes
 gen-all: gen-youtube
 gen-all: gen-facebook
@@ -40,6 +52,9 @@ gen-all: gen-chatgpt
 gen-all: gen-medium
 gen-all: gen-rutracker
 gen-all: gen-cloudflare
+gen-all: gen-discord
+gen-all: gen-telegram
+gen-all: gen-copilot
 
 slice-routes:
 	@rm routes/all-ipv4-*
